@@ -184,7 +184,8 @@ const Orchestrator = ({ onZoomLayer1, onZoomLayer3, onAgentClick }) => {
         </div>
       </div>
     </motion.div>
-);
+  );
+};
 
 
 
