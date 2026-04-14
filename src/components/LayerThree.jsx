@@ -15,7 +15,8 @@ const factoryAgents = [
     name: 'Generador RWE', 
     icon: FileSpreadsheet, 
     color: '#f59e0b',
-    description: 'Crea productos de datos (Data Products) listos para investigación y mercado.'
+    description: 'Crea productos de datos (Data Products) listos para investigación y mercado.',
+    status: 'SISTEMA ACTIVO'
   },
   { 
     id: 'interfaz-federada', 
@@ -30,7 +31,8 @@ const factoryAgents = [
     icon: Share2, 
     color: '#E8A317', // Anjana Golden Orange
     description: 'Publicador oficial en el Espacio de Datos Anjana para la red europea EHDS.',
-    isHighlighted: true
+    isHighlighted: true,
+    status: 'Connected to Anjana API'
   },
 ];
 
@@ -96,10 +98,10 @@ const LayerThree = ({ onBack, onAgentClick }) => {
                 <h3 style={{ fontSize: '1.2rem', marginBottom: '0.8rem' }}>{agent.name}</h3>
                 <p style={{ fontSize: '0.8rem', color: '#94a3b8', lineHeight: '1.4' }}>{agent.description}</p>
                 
-                {agent.isHighlighted && (
+                {agent.status && (
                   <div style={{ marginTop: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', justifyContent: 'center' }}>
                     <div className="pulse-dot" style={{ backgroundColor: '#10b981' }}></div>
-                    <span style={{ fontSize: '0.7rem', color: '#10b981' }}>Connected to Anjana API</span>
+                    <span style={{ fontSize: '0.7rem', color: '#10b981' }}>{agent.status}</span>
                   </div>
                 )}
               </motion.div>

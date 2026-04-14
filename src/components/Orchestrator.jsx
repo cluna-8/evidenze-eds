@@ -2,8 +2,9 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Brain, Factory, Database, Shield, Lock, Cpu, ArrowRight,
-  Users, Search, Layers, Briefcase, Workflow
+  Users, Search, Layers, Briefcase, Workflow, Play
 } from 'lucide-react';
+import DemoUseCaseModal from './DemoUseCaseModal';
 
 
 const StatusItem = ({ icon: Icon, label, status, color }) => (
@@ -24,6 +25,8 @@ const KernelSpec = ({ label, value }) => (
 );
 
 const Orchestrator = ({ onZoomLayer1, onZoomLayer3, onAgentClick }) => {
+  const [showDemo, setShowDemo] = React.useState(false);
+
   const methodologyItems = [
     { 
       id: 'meth-negocio', name: 'Negocio', icon: Briefcase, color: '#38bdf8',
@@ -180,9 +183,41 @@ const Orchestrator = ({ onZoomLayer1, onZoomLayer3, onAgentClick }) => {
               <KernelSpec label="Inter-Agent Comm" value="SECURE BUS" />
               <KernelSpec label="State Management" value="ACTIVE" />
             </div>
+
+            <motion.button
+              whileHover={{ scale: 1.05, backgroundColor: '#38bdf8', color: '#0f172a' }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowDemo(true)}
+              style={{
+                marginTop: '2.5rem',
+                width: '100%',
+                padding: '1rem',
+                background: 'rgba(56, 189, 248, 0.1)',
+                border: '1px solid #38bdf8',
+                borderRadius: '12px',
+                color: '#38bdf8',
+                fontWeight: 'bold',
+                fontSize: '0.9rem',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.8rem',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              <Play size={18} fill="currentColor" />
+              EJECUTAR PRUEBA DEMO
+            </motion.button>
           </div>
         </div>
       </div>
+
+      <AnimatePresence>
+        {showDemo && (
+          <DemoUseCaseModal onClose={() => setShowDemo(false)} />
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
