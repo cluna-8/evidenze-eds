@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Brain, Factory, Database, Shield, Lock, Cpu, ArrowRight,
-  Users, Search, Layers, Briefcase, Workflow, Play
+  Users, Search, Layers, Briefcase, Workflow, Play, Compass
 } from 'lucide-react';
 import DemoUseCaseModal from './DemoUseCaseModal';
 
@@ -24,7 +24,7 @@ const KernelSpec = ({ label, value }) => (
   </div>
 );
 
-const Orchestrator = ({ onZoomLayer1, onZoomLayer3, onAgentClick }) => {
+const Orchestrator = ({ onZoomLayerCompass, onZoomLayer1, onZoomLayer3, onAgentClick }) => {
   const [showDemo, setShowDemo] = React.useState(false);
 
   const methodologyItems = [
@@ -116,6 +116,30 @@ const Orchestrator = ({ onZoomLayer1, onZoomLayer3, onAgentClick }) => {
       <div style={{ display: 'flex', flex: 1, gap: '2rem' }}>
         {/* Missions Section */}
         <div style={{ flex: 2, display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <motion.div 
+            className="glass-panel"
+            style={{ 
+              flex: 1, padding: '2rem', display: 'flex', alignItems: 'center', gap: '2rem', 
+              cursor: 'pointer', borderLeft: '6px solid #818cf8',
+              background: 'linear-gradient(90deg, rgba(129, 140, 248, 0.05) 0%, transparent 100%)'
+            }}
+            whileHover={{ x: 10, backgroundColor: 'rgba(129, 140, 248, 0.08)' }}
+            onClick={onZoomLayerCompass}
+          >
+            <Compass size={64} color="#818cf8" />
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h3 style={{ fontSize: '1.8rem', marginBottom: '0.5rem' }}>EDS Compass</h3>
+                <span className="pulse-dot" style={{ backgroundColor: '#818cf8' }}></span>
+              </div>
+              <p style={{ color: '#94a3b8', fontSize: '1rem', lineHeight: '1.6' }}>
+                Consultoría Ejecutiva & Hoja de Ruta EHDS. Traduce la regulación europea en un 
+                modelo operativo claro y ejecutable para organizaciones de salud.
+              </p>
+            </div>
+            <ArrowRight size={32} color="#475569" />
+          </motion.div>
+
           <motion.div 
             className="glass-panel"
             style={{ 

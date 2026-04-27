@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Orchestrator from './components/Orchestrator';
 import LayerOne from './components/LayerOne';
 import LayerThree from './components/LayerThree';
+import LayerCompass from './components/LayerCompass';
 import AgentModal from './components/AgentModal';
 
 function App() {
@@ -32,9 +33,16 @@ function App() {
           {currentView === 'orchestrator' && (
             <Orchestrator 
               key="orchestrator" 
+              onZoomLayerCompass={() => setCurrentView('compass')}
               onZoomLayer1={() => setCurrentView('layer1')} 
               onZoomLayer3={() => setCurrentView('layer3')}
               onAgentClick={handleAgentClick}
+            />
+          )}
+          {currentView === 'compass' && (
+            <LayerCompass 
+              key="compass" 
+              onBack={() => setCurrentView('orchestrator')} 
             />
           )}
           {currentView === 'layer1' && (
